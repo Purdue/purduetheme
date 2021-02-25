@@ -1,0 +1,17 @@
+global-css:
+  css:
+    theme:
+      https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.2/css/bulma.min.css: {type: external}
+      https://unpkg.com/flickity@2/dist/flickity.min.css: {type: external}
+      css/style.css: {}
+
+global-js:
+  js:
+    https://cdn.jsdelivr.net/npm/@creativebulma/bulma-collapsible@1.0.3/dist/js/bulma-collapsible.min.js: {type: external}
+    https://unpkg.com/flickity@2.2.1/dist/flickity.pkgd.min.js: {type: external}
+    js/main.js: {}
+    https://kit.fontawesome.com/ef90aff9e0.js: { type: external }
+  dependencies:
+    - core/jquery
+    - core/drupal
+    - core/drupalSettings

@@ -1,0 +1,44 @@
+<?php
+/**
+ * Implements hook_preprocess_HOOK() for field.html.twig.
+ */
+function purduehub_preprocess_page(&$variables) {
+  $variables['site_name'] = \Drupal::config('system.site')->get('name');
+  $variables['logo'] = theme_get_setting('logo.url');
+}
+/**
+ * Changes the search box placeholder
+ */
+function purduehub_form_search_block_form_alter(&$form, &$form_state) {
+  $form['keys']['#attributes']['placeholder'][] = t('What are you looking for?');
+  $form['actions']['submit']['#value'] = html_entity_decode('&#xf002;');
+}
+/**
+ * Implements template_preprocess_views_view()
+ * @param array $vars
+ */
+function purduehub_preprocess_views_view(&$vars){
+  $vars['more']['#options']['attributes']['class'] = array(
+    'view_more',
+  );
+}
+/**
+ * Hides Page title in pages and Podcasts
+ */
+function purduehub_preprocess_page_title(&$variables) {
+  $node = \Drupal::routeMatch()->getParameter('node');
+  if( $node ) {
+    if( $node->getType() == 'page' || $node->getType() == 'podcast' ) {
+      $variables['title'] = "";
+    }
+  }
+}
+
+/**
+ * Implements hook_theme_suggestions_page_alter().
+ */
+function purduehub_theme_suggestions_page_alter(array &$suggestions, array $variables) {
+  if ($node = \Drupal::routeMatch()->getParameter('node')) {
+    $suggestions[] = 'page__' . $node->bundle();
+  }
+}

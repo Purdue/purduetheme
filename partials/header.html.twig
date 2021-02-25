@@ -1,0 +1,35 @@
+<header class="main-header" role="banner">
+	<div class="container">
+		<div id="navbar_top_menu" class="navbar is-black">
+			<div class="navbar-brand">
+				{{ page.brand }}
+				<span class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbar_top">
+					<span aria-hidden="true"></span>
+					<span aria-hidden="true"></span>
+					<span aria-hidden="true"></span>
+				</span>
+			</div>
+			<div id="navbar_top" class="navbar-menu">
+				<div class="navbar-end">
+					{{ page.main_navigation }}
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="main_search">
+		<div class="container is-fluid">
+			<div class="column is-4 is-offset-8">
+				<div class="main_search__search">
+					{{ page.search_nav }}
+				</div>
+			</div>
+		</div>
+	</div>
+	{{ page.header }}
+</header>
+{% if page.breadcrumbs %}
+<div class="breadcrumbs">
+	<div class="container">{{ page.breadcrumbs }}</div>
+</div>
+{% endif %}

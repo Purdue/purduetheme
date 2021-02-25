@@ -1,0 +1,24 @@
+{
+    "name": "purdue/purduetheme",
+    "version": "0.1.1-alpha",
+    "description": "Drupal theme based on Purdue University digital brand standards ",
+    "authors": [
+        {
+            "name": "Purdue Marketing and Communications",
+            "email": "digital-marketing@groups.purdue.edu",
+            "homepage": "https://marcom.purdue.edu"
+        }
+    ],
+    "license": "GPLv3",
+    "type": "drupal-theme",
+    "repositories": [
+        {
+          "type": "composer",
+          "url": "https://purdue.github.io"
+        }
+    ],
+    "require": {
+        "purdue/bulma-blocks": ">=1.2.1",
+        "purdue/purdue-blocks": ">=1.2.0"
+    }
+}

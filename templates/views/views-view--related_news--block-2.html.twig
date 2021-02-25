@@ -1,0 +1,18 @@
+<div class="related-news__content_title">{{ 'TOP VIDEO' }}</div>
+{% for key,row in view.result %}
+  {% set bg_image = view.style_plugin.getField(key, 'field_image') %}
+  {% set video_link = view.style_plugin.getField(key, 'view_node') %}
+  <div class="in-the-news-page__content_item">
+    <a href="{{ video_link|split('"')[1] }}">
+      <figure class='in-the-news-page__content_figure' style="background-image: url( {{ bg_image|split('"')[3] }} )">
+        <i class="far fa-play-circle"></i>
+      </figure>
+    </a>
+      <h6 class='in-the-news-page__content_category'>{{ view.style_plugin.getField(key, 'field_topic') }}</h6>
+      <div class='in-the-news-page__content_date'>{{ view.style_plugin.getField(key, 'created') }}</div>
+      <h3 class='in-the-news-page__content_title'>{{ view.style_plugin.getField(key, 'title') }}</h3>
+      <a href="{{ video_link|split('"')[1] }}" class="watch_button">
+        <span><i class="fas fa-share"></i></span>
+      </a>
+  </div>
+{% endfor %}

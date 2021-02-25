@@ -1,0 +1,25 @@
+<div class="ralated-content">
+  {% for key,row in view.result %}
+  <div class="ralated-content__item">
+    {% set bg_image = view.style_plugin.getField(key, 'field_image') %}
+    {% set my_link = view.style_plugin.getField(key, 'view_node') %}
+    <a href="{{ my_link|split('"')[1] }}">
+      <figure class='ralated-content__item_figure' style="background-image: url( {{ bg_image|split('"')[3] }} )"></figure>
+    </a>
+    {% set my_type = view.style_plugin.getField(key, 'type') %}
+    {% set my_title = view.style_plugin.getField(key, 'title') %}
+    <p class='ralated-content__item_title'>
+      <a href="{{ my_link|split('"')[1] }}">{{ my_type|striptags }}: {{ my_title|striptags }}</a>
+    </p>
+    <p class='ralated-content__item_copy'>
+      {% if view.style_plugin.getField(key, 'field_video_description') %}
+        {{ view.style_plugin.getField(key, 'field_video_description')|truncate(50) }}
+      {% else %}
+        {% set my_body = view.style_plugin.getField(key, 'body') %}
+        {% set my_body = my_body|striptags %}
+        {{ my_body|truncate(50) }}
+      {% endif %}
+    </p>
+  </div>
+  {% endfor %}
+</div>

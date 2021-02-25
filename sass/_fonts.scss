@@ -1,0 +1,110 @@
+@import url("https://use.typekit.net/cgi6cpi.css");
+/* Regular */
+@font-face {
+	font-family: 'United Sans';
+	src: url('../fonts/UnitedSansRgLt.woff2') format('woff2'),
+		 url('../fonts/UnitedSansRgLt.woff') format('woff');
+	font-weight: 100;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'United Sans';
+	src: url('../fonts/UnitedSansRgMd.woff2') format('woff2'),
+		 url('../fonts/UnitedSansRgMd.woff') format('woff');
+	font-weight: 400;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'United Sans';
+	src: url('../fonts/UnitedSansRgBd.woff2') format('woff2'),
+		 url('../fonts/UnitedSansRgBd.woff') format('woff');
+	font-weight: 700;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'United Sans';
+	src: url('../fonts/UnitedSansRgHv.woff2') format('woff2'),
+		 url('../fonts/UnitedSansRgHv.woff') format('woff');
+	font-weight: 900;
+	font-style: normal;
+}
+
+/* Condensed */
+@font-face {
+	font-family: 'United Sans Condensed';
+	src: url('../fonts/UnitedSansCdLt.woff2') format('woff2'),
+		 url('../fonts/UnitedSansCdLt.woff') format('woff');
+	font-weight: 100;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'United Sans Condensed';
+	src: url('../fonts/UnitedSansCdMd.woff2') format('woff2'),
+		 url('../fonts/nitedSansCdMd.woff') format('woff');
+	font-weight: 400;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'United Sans Condensed';
+	src: url('../fonts/UnitedSansCdBd.woff2') format('woff2'),
+		 url('../fonts/UnitedSansCdBd.woff') format('woff');
+	font-weight: 700;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'United Sans Condensed';
+	src: url('../fonts/UnitedSansCdHv.woff2') format('woff2'),
+		 url('../fonts/UnitedSansCdHv.woff') format('woff');
+	font-weight: 900;
+	font-style: normal;
+}
+
+/* Extended */
+@font-face {
+	font-family: 'United Sans Extended';
+	src: url('../fonts/UnitedSansEXLt.woff2') format('woff2'),
+		 url('../fonts/UnitedSansExLt.woff') format('woff');
+	font-weight: 100;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'United Sans Extended';
+	src: url('../fonts/UnitedSansExMd.woff2') format('woff2'),
+		 url('../fonts/UnitedSansExMd.woff') format('woff');
+	font-weight: 400;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'United Sans Extended';
+	src: url('../fonts/UnitedSansExBd.woff2') format('woff2'),
+		 url('../fonts/UnitedSansExBd.woff') format('woff');
+	font-weight: 700;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'United Sans Extended';
+	src: url('../fonts/UnitedSansExHv.woff2') format('woff2'),
+		 url('../fonts/UnitedSansExHv.woff') format('woff');
+	font-weight: 900;
+	font-style: normal;
+}
+
+$acumin: acumin-pro, sans-serif;
+$acumin_condensed: acumin-pro-condensed, sans-serif;
+$acumin_extra_condensed: acumin-pro-extra-condensed, sans-serif;
+$acumin_semi_condensed: acumin-pro-semi-condensed, sans-serif;
+
+$source_serif: source-serif-pro, serif;
+
+$united-sans-regular: 'United Sans', sans-serif;
+$united-sans-condensed: 'United Sans Condensed', sans-serif;
+$united-sans-extended: 'United Sans Extended', sans-serif;

@@ -1,0 +1,35 @@
+
+<div class="videos-library-page__top-videos">
+  <div class="container">
+    <h4 class='videos-library-page__top-videos_subtitle'><span>{{ 'Top Videos' }}</span></h4>
+    {% for key,row in view.result %}
+      {% set unique_id = random() %}
+      <div class="videos-library-page__top-videos_video">
+        {% set image = view.style_plugin.getField(key, 'field_image') %}
+        {% set video_link = view.style_plugin.getField(key, 'view_node') %}
+        <figure class='videos-library-page__top-videos_video_figure' style="background-image: url( {{ image|split('"')[3] }} )">
+          <p class="share-buttons">
+            <button onclick="window.location.href='{{ video_link|split('"')[1] }}'" class="watch_button">
+              <span><i class="fas fa-play"></i></span>
+            </button>
+            <button onclick="showModal('videos-library-share-{{ unique_id }}')" class="share_button">
+              <span><i class="fas fa-share"></i></span>
+            </button>
+          </p>
+        </figure>
+        <h4 class='videos-library-page__top-videos_video_title'>{{ view.style_plugin.getField(key, 'title') }}</h4>
+      </div>
+      <div id="videos-library-share-{{ unique_id }}" class="videos-library-page__hero_share">
+        <h3>{{ view.style_plugin.getField(key, 'title')|striptags }}</h3>
+        <p>
+          SHARE:
+          <a class="top_article_data_share_button" href="https://www.facebook.com/sharer/sharer.php?u={{ video_link|split('"')[1] }}" title="Share on Facebook" target="_blank"><i class="fab fa-facebook-f"></i></a>
+          <a class="top_article_data_share_button" href="https://www.linkedin.com/sharing/share-offsite/?url={{ video_link|split('"')[1] }}" title="Share on Linkedin" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+          <a class="top_article_data_share_button" href="https://twitter.com/intent/tweet?text={{ view.style_plugin.getField(key, 'title')|striptags }}%20{{ video_link|split('"')[1] }}" title="Share on Twitter" target="_blank"><i class="fab fa-twitter"></i></a>
+          <a class="top_article_data_share_button" href="mailto:?subject={{ view.style_plugin.getField(key, 'title')|striptags }}&body={{ view.style_plugin.getField(key, 'title')|striptags }} {{ video_link|split('"')[1] }}" title="{{ 'Share via Email' }}" target="_blank"><i class="fas fa-envelope"></i></a>
+        </p>
+        <button class="modal-close is-large" aria-label="close" onclick="closeModal('videos-library-share-{{ unique_id }}')"></button>
+      </div>
+    {% endfor %}
+  </div>
+</div>

@@ -1,0 +1,15 @@
+<div class="in-the-news_more">
+  {{ more }}
+</div>
+<div class="in-the-news">
+  {% for key,row in view.result %}
+  <div class="in-the-news__item">
+    {% set bg_image = view.style_plugin.getField(key, 'field_image') %}
+    {% set news_link = view.style_plugin.getField(key, 'view_node') %}
+    <a href="{{ news_link|split('"')[1] }}">
+      <figure class='in-the-news__item_figure' style="background-image: url( {{ bg_image|split('"')[3] }} )"></figure>
+    </a>
+    <h4  class='in-the-news__item_title'>{{ view.style_plugin.getField(key, 'title') }} </h4>
+  </div>
+  {% endfor %}
+</div>

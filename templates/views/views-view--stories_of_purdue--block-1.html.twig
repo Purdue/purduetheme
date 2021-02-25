@@ -1,0 +1,20 @@
+<div class="stories-of-purdue_more">
+  {{ more }}
+</div>
+<div class="stories-of-purdue">
+  {% for key,row in view.result %}
+  <div class="stories-of-purdue__item">
+    <div class="stories-of-purdue__item_top">
+      {% set bg_image = view.style_plugin.getField(key, 'field_image') %}
+      {% set news_link = view.style_plugin.getField(key, 'view_node') %}
+      <a href="{{ news_link|split('"')[1] }}">
+        <figure class='stories-of-purdue__item_figure' style="background-image: url( {{ bg_image|split('"')[3] }} )"></figure>
+      </a>
+      <h4  class='stories-of-purdue__item_title'>{{ view.style_plugin.getField(key, 'title') }} </h4>
+    </div>
+    <a href="{{ news_link|split('"')[1] }}" class="stories-of-purdue__item_more">
+      <span>{{ news_link|striptags }}</span>
+    </a>
+  </div>
+  {% endfor %}
+</div>

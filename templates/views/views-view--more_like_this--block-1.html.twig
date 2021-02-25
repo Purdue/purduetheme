@@ -1,0 +1,12 @@
+<div class="more-like-this__content container">
+  {% for key,row in view.result %}
+    {% set bg_image = view.style_plugin.getField(key, 'field_image') %}
+    {% set video_link = view.style_plugin.getField(key, 'view_node') %}
+    <div class="more-like-this__content_item">
+      <a href="{{ video_link|split('"')[1] }}">
+        <figure class='more-like-this__content_figure' style="background-image: url( {{ bg_image|split('"')[3] }} )"></figure>
+      </a>
+      <div class='more-like-this__content_title'>{{ view.style_plugin.getField(key, 'title') }}</div>
+    </div>
+  {% endfor %}
+</div>

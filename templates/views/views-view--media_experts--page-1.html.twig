@@ -1,0 +1,31 @@
+{% set break = false %}
+{% for key,row in view.result if not break %}
+  {% set bg_image = view.style_plugin.getField(key, 'field_image') %}
+  <div class="in-the-news-page__hero" style="background-image: url( )">
+    <h1 class="in-the-news-page__hero_title">{{ view.title }}</h1>
+  </div>
+  {% set break = true %}
+{% endfor %}
+<div class="in-the-news-page__content">
+  <div class="in-the-news-page__content_filters">
+    <div class="container">
+      {{ exposed }}
+    </div>
+  </div>
+  <div class="container in-the-news-page__content_body">
+    {% for key,row in view.result %}
+      {% set bg_image = view.style_plugin.getField(key, 'field_image') %}
+      {% set video_link = view.style_plugin.getField(key, 'view_node') %}
+      <div class="in-the-news-page__content_item">
+        <a href="{{ video_link|split('"')[1] }}">
+          <figure class='in-the-news-page__content_figure' style="background-image: url( {{ bg_image|split('"')[3] }} )"></figure>
+        </a>
+          <h6 class='in-the-news-page__content_category'>{{ view.style_plugin.getField(key, 'field_expertise') }}</h6>
+          <h3 class='in-the-news-page__content_title'>{{ view.style_plugin.getField(key, 'title') }}</h3>
+          <a href="{{ video_link|split('"')[1] }}" class="watch_button">
+            <span><i class="fas fa-share"></i></span>
+          </a>
+      </div>
+    {% endfor %}
+  </div>
+</div>

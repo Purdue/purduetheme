@@ -1,0 +1,32 @@
+{#
+/**
+ * @file
+ * Theme override for views to display hero carousel.
+ */
+#}
+
+
+{% for key,row in view.result %}
+  {% set podcast_image = view.style_plugin.getField(key, 'field_image') %}
+  {% set podcast_link = view.style_plugin.getField(key, 'view_node') %}
+
+  <div class="home-card-horizontal">
+    <div class="media-left">
+      <figure class="image">
+        <a href="{{ podcast_link|split('"')[1] }}" >
+          <img src="{{ podcast_image|split('"')[1] }}" />
+        </a>
+      </figure>
+    </div>
+    <div class="media-content">
+      <p class="title is-4">{{ view.style_plugin.getField(key, 'field_teaser') }}</p>
+      <div className="read-more-button">
+        {#{ more }#}
+        <a href="{{ more.url }}" class="read-more-button-link">
+          <span>{{ more.title }}</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+{% endfor %}

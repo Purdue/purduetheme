@@ -1,0 +1,52 @@
+<footer role="contentinfo" class="page_footer">
+	<div class="column has-text-centered is-footer-logo">
+		<a href="{{ path('<front>') }}" title="{{ 'Home'|t }}" rel="home" class="footer-brand">
+			<img class="logo__img" src="{{ logo }}" alt="{{ 'Home'|t }}" />
+		</a>
+	</div>
+	<div class="page_footer__columns">
+		<div class="column is-8 is-offset-2">
+			<div class="columns">
+				<div class="column page_footer__columns__one">
+					{% if page.footer_col_one|render|striptags|trim|length > 0 %}
+						{{ page.footer_col_one }}
+					{% endif %}
+				</div>
+
+				{% if page.footer_col_two|render|striptags|trim|length > 0 %}
+					<div class="column page_footer__columns__two">
+						{{ page.footer_col_two }}
+					</div>
+				{% endif %}
+
+				{% if page.footer_col_three|render|striptags|trim|length > 0 %}
+					<div class="column page_footer__columns__three">
+						{{ page.footer_col_three }}
+					</div>
+				{% endif %}
+
+				{% if page.footer_col_four|render|striptags|trim|length > 0 %}
+					<div class="column page_footer__columns__four">
+						{{ page.footer_col_four }}
+					</div>
+				{% endif %}
+
+				{% if page.footer_col_five|render|striptags|trim|length > 0 %}
+					<div class="column page_footer__columns__five">
+						{{ page.footer_col_five }}
+					</div>
+				{% endif %}
+
+				{% if page.footer_col_six|render|striptags|trim|length > 0 %}
+					<div class="column page_footer__columns__six">
+						{{ page.footer_col_six }}
+					</div>
+				{% endif %}
+			</div>
+			{{ page.footer }}
+		</div>
+	</div>
+	<div class="container is-fluid page_footer__copy">
+		Copyright &copy; {{ "now"|date('Y') }} {{ site_name }} {{ page.footer_copy }}
+	</div>
+</footer>

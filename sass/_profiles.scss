@@ -1,0 +1,385 @@
+.profile {
+  &__hero {
+    background-color: $steel;
+    display: flex;
+    padding: 46px 16px 10px 16px;
+    margin: 0 auto 50px auto;
+    width: 100%;
+    &_title {
+      color: $white;
+      font-family: $united-sans-regular;
+      font-size: 68px;
+      font-weight: 600;
+      line-height: 65px;
+      @media screen and (max-width: 768px) {
+        font-size: 48px;
+        line-height: 55px
+      }
+    }
+    &_position {
+      color: $white;
+      font-family: $acumin;
+      font-size: 32px;
+      font-style: italic;
+      font-weight: 300;
+      line-height: 30px;
+      @media screen and (max-width: 768px) {
+        font-size: 28px;
+        line-height: 30px
+      }
+    }
+    &_email, &_phone {
+      background-color: $black;
+      clear: both;
+      color: $white;
+      display: inline-block;
+      float: left;
+      font-size: 24px;
+      font-weight: 300;
+      line-height: 30px;
+      margin-bottom: 30px;
+      padding: 4px 12px 10px 12px;
+      position: relative;
+      @media screen and (max-width: 768px) {
+        font-size: 18px;
+        display: flex;
+        float: none;
+        justify-content: center;
+        margin-bottom: 16px;
+        width: 100%;
+      }
+      &:after {
+        background-color: $boiler_maker_gold;
+        bottom: -7px;
+        content: '';
+        height: 4px;
+        left: 5%;
+        position: absolute;
+        width: 90%;
+        @media screen and (max-width: 768px) {
+          left: 1.5%;
+          width: 97%;
+        }
+      }
+      a, a:focus, a:active, a:visited {
+        color: $white;
+        position: relative;
+        text-decoration: none;
+        i {
+          border-right: $white 1px solid;
+          font-size: 20px;
+          padding-right: 10px;
+          @media screen and (max-width: 768px) {
+            font-size: 16px;
+          }
+        }
+        span {
+          padding-left: 10px;
+        }
+        &:hover {
+          color: darken($white, 20%);
+        }
+      }
+    }
+    &_phone {
+      margin-right: 32px;
+    }
+    &_social_media {
+      background-color: $black;
+      color: $white;
+      display: flex;
+      float: left;
+      font-weight: 300;
+      line-height: 30px;
+      margin-bottom: 30px;
+      padding: 4px 0 10px 0;
+      position: relative;
+      @media screen and (max-width: 768px) {
+        float: none;
+        justify-content: center;
+        margin-bottom: 16px;
+        width: 100%;
+      }
+      &:after {
+        background-color: $boiler_maker_gold;
+        bottom: -7px;
+        content: '';
+        display: flex;
+        height: 4px;
+        left: 5%;
+        position: absolute;
+        width: 90%;
+        @media screen and (max-width: 768px) {
+          left: 1.5%;
+          width: 97%;
+        }
+      }
+      div:not(:last-child) {
+        a {
+          border-right: $white 1px solid !important;
+        }
+      }
+      a, a:focus, a:active, a:visited {
+        color: $white;
+        font-size: 20px;
+        padding: 0 10px;
+        @media screen and (max-width: 768px) {
+          font-size: 16px;
+        }
+        &:hover {
+          color: darken($white, 20%);
+        }
+      }
+    }
+    &_image {
+      border: $white 1px solid;
+      display: block;
+      height: 100%;
+      margin-bottom: 30px;
+      min-height: 250px;
+      position: relative;
+      width: 100%;
+      @media screen and (width: 768px) {
+        height: 460px;
+      }
+      &_image {
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        bottom: -5px;
+        display: block;
+        height: 100%;
+        position: absolute;
+        right: -5px;
+        width: 100%;
+      }
+    }
+    &_otherlinks {
+      clear: both;
+      display: flex;
+      float: left;
+      @media screen and (max-width: 768px) {
+        display: block;
+        float: none;
+        text-align: center;
+        width: 100%;
+      }
+      &_links {
+        margin-bottom: 16px;
+        margin-right: 16px;
+        @media screen and (max-width: 768px) {
+          margin-bottom: 8px;
+          margin-right: 0;
+        }
+        a, a:focus, a:active, a:visited {
+          color: $white;
+          font-size: 15px;
+          font-weight: 300;
+          &:hover {
+            color: darken($white, 20%);
+          }
+        }
+      }
+    }
+    .is-empty {
+      @media screen and (max-width: 768px) {
+        padding: 0;
+        margin: 0;
+      }
+    }
+  }
+  // End Hero Section
+  &__content {
+    margin-bottom: 50px;
+    .tabs {
+      margin-bottom: 0 !important;
+      @media screen and (max-width: 768px) {
+        display: none;
+      }
+    }
+    &_tabs {
+      border-color: $boiler_maker_gold !important;
+      padding: 0 !important;
+      li {
+        font-variant: $acumin_semi_condensed !important;
+        font-size: 18px;
+        line-height: inherit !important;
+        padding-left: 0 !important;
+        text-transform: uppercase;
+        &.is-active {
+          a {
+            border-color: $boiler_maker_gold !important;
+            color: $black;
+            font-weight: 600;
+          }
+        }
+        a {
+          color: $black;
+          font-weight: 300;
+        }
+      }
+      &_content {
+        border: $boiler_maker_gold 1px solid;
+        border-top: none;
+        margin-left: 1rem;
+        padding: 50px;
+        @media screen and (max-width: 768px) {
+          display: none;
+        }
+        &_item {
+          display: none;
+          @media screen and (max-width: 768px) {
+            display: block;
+          }
+          &.is-active {
+            display: block;
+          }
+          &_fields {
+            display: grid;
+    				grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    				grid-template-rows: auto;
+            grid-gap: 64px 0;
+          }
+        }
+      }
+    }
+    &_bio {
+      &_title {
+        font-family: $united-sans-regular;
+        font-size: 40px;
+        line-height: 60px;
+      }
+      &_education {
+        &_item {
+          border-right: 1px solid $boiler_maker_gold;
+          padding: 0 32px;
+          text-align: center;
+          @media screen and (max-width: 767px) {
+            border-right: none;
+            padding: 0;
+          }
+          i {
+            font-size: 40px;
+            margin-bottom: 23px;
+          }
+          &:first-child {
+            padding-left: 0;
+            @media screen and (max-width: 767px) {
+              padding-right: 0;
+            }
+          }
+          &:nth-child(3n) {
+            border-right: none;
+          }
+          &:last-child {
+            border-right: none;
+            padding-right: 0;
+            @media screen and (max-width: 767px) {
+              padding-left: 0;
+            }
+          }
+        }
+        &_school {
+          font-family: $acumin;
+          font-size: 24px;
+          line-height: 32px;
+          padding-bottom: 12px;
+        }
+        &_degree {
+          font-family: $acumin;
+          font-size: 18px;
+          font-style: italic;
+          font-weight: 300;
+          line-height: 25px;
+          padding-bottom: 6px;
+        }
+        &_desc {
+          font-family: $acumin;
+          font-size: 18px;
+          font-weight: 300;
+          line-height: 25px;
+          padding-bottom: 12px;
+        }
+        &_year {
+          font-style: italic;
+        }
+      }
+      &_publications, &_media {
+        &_item {
+          border-bottom: $steel 1px solid;
+          margin-top: 23px;
+          padding-bottom: 30px;
+          &:last-child {
+            border-bottom: none;
+          }
+        }
+        &_title {
+          font-family: $acumin;
+          font-size: 20px;
+          line-height: 32px;
+          color: $aged;
+          a, a:active, a:focus, a:visited {
+            color: $aged;
+            font-weight: 300;
+            text-decoration: underline;
+            &:hover {
+              color: lighten($aged, 15%);
+            }
+          }
+        }
+        &_date {
+          color: $steel;
+          font-size: 14px;
+          font-weight: 300;
+          margin-bottom: 8px;
+          margin-top: 4px;
+          text-transform: uppercase;
+        }
+      }
+    }
+  }
+}
+
+#mobile_accordions {
+  display: none;
+  @media screen and (max-width: 768px) {
+    border: $boiler_maker_gold 1px solid;
+    display: block;
+    margin: 0 16px;
+  }
+  .accordion {
+    &-header {
+      background-color: $boiler_maker_gold;
+      a {
+        color: $black;
+        display: block;
+        font-size: 18px;
+        font-weight: 300;
+        padding: 28px 26px;
+        position: relative;
+        text-transform: uppercase;
+        width: 100%;
+        &:after {
+          content: '\f067';
+          font-family: 'fontawesome';
+          position: absolute;
+          right: 16px;
+        }
+        &.active {
+          &:after {
+            content: '\f068';
+            font-family: 'fontawesome';
+            position: absolute;
+            right: 16px;
+          }
+        }
+      }
+    }
+    &-body {
+      padding: 50px 30px 30px 30px;
+      .profile__content_bio_title {
+        font-size: 35px;
+      }
+    }
+  }
+}

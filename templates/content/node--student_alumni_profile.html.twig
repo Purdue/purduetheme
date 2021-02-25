@@ -1,0 +1,392 @@
+{#
+/**
+ * @file
+ * Theme override to display a node.
+ *
+ * Available variables:
+ * - node: The node entity with limited access to object properties and methods.
+     Only "getter" methods (method names starting with "get", "has", or "is")
+     and a few common methods such as "id" and "label" are available. Calling
+     other methods (such as node.delete) will result in an exception.
+ * - label: The title of the node.
+ * - content: All node items. Use {{ content }} to print them all,
+ *   or print a subset such as {{ content.field_example }}. Use
+ *   {{ content|without('field_example') }} to temporarily suppress the printing
+ *   of a given child element.
+ * - author_picture: The node author user entity, rendered using the "compact"
+ *   view mode.
+ * - metadata: Metadata for this node.
+ * - date: Themed creation date field.
+ * - author_name: Themed author name field.
+ * - url: Direct URL of the current node.
+ * - display_submitted: Whether submission information should be displayed.
+ * - attributes: HTML attributes for the containing element.
+ *   The attributes.class element may contain one or more of the following
+ *   classes:
+ *   - node: The current template type (also known as a "theming hook").
+ *   - node--type-[type]: The current node type. For example, if the node is an
+ *     "Article" it would result in "node--type-article". Note that the machine
+ *     name will often be in a short form of the human readable label.
+ *   - node--view-mode-[view_mode]: The View Mode of the node; for example, a
+ *     teaser would result in: "node--view-mode-teaser", and
+ *     full: "node--view-mode-full".
+ *   The following are controlled through the node publishing options.
+ *   - node--promoted: Appears on nodes promoted to the front page.
+ *   - node--sticky: Appears on nodes ordered above other non-sticky nodes in
+ *     teaser listings.
+ *   - node--unpublished: Appears on unpublished nodes visible only to site
+ *     admins.
+ * - title_attributes: Same as attributes, except applied to the main title
+ *   tag that appears in the template.
+ * - content_attributes: Same as attributes, except applied to the main
+ *   content tag that appears in the template.
+ * - author_attributes: Same as attributes, except applied to the author of
+ *   the node tag that appears in the template.
+ * - title_prefix: Additional output populated by modules, intended to be
+ *   displayed in front of the main title tag that appears in the template.
+ * - title_suffix: Additional output populated by modules, intended to be
+ *   displayed after the main title tag that appears in the template.
+ * - view_mode: View mode; for example, "teaser" or "full".
+ * - teaser: Flag for the teaser state. Will be true if view_mode is 'teaser'.
+ * - page: Flag for the full page state. Will be true if view_mode is 'full'.
+ * - readmore: Flag for more state. Will be true if the teaser content of the
+ *   node cannot hold the main body content.
+ * - logged_in: Flag for authenticated user status. Will be true when the
+ *   current user is a logged-in member.
+ * - is_admin: Flag for admin user status. Will be true when the current user
+ *   is an administrator.
+ *
+ * @see template_preprocess_node()
+ *
+ * @todo Remove the id attribute (or make it a class), because if that gets
+ *   rendered twice on a page this is invalid CSS for example: two lists
+ *   in different view modes.
+ */
+#}
+<article{{ attributes }}>
+  <div class="profile__hero">
+    <div class="container">
+      <div class="columns">
+        <div class="column is-half">
+          <h1 class="profile__hero_title">{{ node.label }}</h1>
+          <h3 class="profile__hero_position">{{ content.field_position }}</h3>
+          <div class="profile__hero_email">
+            <a href="mailto:{{ node.field_email.0.value }}">
+              <i class="fas fa-envelope"></i><span>{{ node.field_email.0.value }}</span>
+            </a>
+          </div>
+          <div class="profile__hero_phone">
+            <a href="tel:{{ node.field_phone_number.0.value }}">
+              <i class="fas fa-phone"></i><span>{{ node.field_phone_number.0.value }}</span>
+            </a>
+          </div>
+          <div class="profile__hero_social_media">
+            {% if content.field_social_media_links[0] %}
+              {% for key, item in content.field_social_media_links if key|first != '#' %}
+                <div>
+                  <a href="{{ item['#url'] }}" target="_blank">
+                    {{ item['#title']|raw }}
+                  </a>
+                </div>
+              {% endfor %}
+            {% endif %}
+          </div>
+          {% if content.field_other_links[0] %}
+            <div class="profile__hero_otherlinks">
+              {% for key, item in content.field_other_links if key|first != '#' %}
+                <div class="profile__hero_otherlinks_links">
+                  <a href="{{ item['#url'] }}" target="_blank">
+                    {{ item['#title']|raw }}
+                  </a>
+                </div>
+              {% endfor %}
+            </div>
+          {% endif %}
+        </div>
+        <div class="column is-empty">
+        </div>
+        <div class="column is-one-third">
+          <div class="profile__hero_image">
+            <figure class="profile__hero_image_image" style="background-image: url({{ file_url(content.field_image['#items'].entity.uri.value) }});"></figure>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="profile__content">
+    <div class="container">
+      <div class="tabs is-boxed">
+        <ul class="profile__content_tabs">
+          {% if content.field_biography[0] %}
+          <li data-tab="{{ node.field_biography.fieldDefinition.label }}">
+            <a>{{ node.field_biography.fieldDefinition.label }}</a>
+          </li>
+          {% endif %}
+
+          {% if content.field_education[0] %}
+          <li data-tab="{{ node.field_education.fieldDefinition.label }}">
+            <a>{{ node.field_education.fieldDefinition.label }}</a>
+          </li>
+          {% endif %}
+
+          {% if content.field_publications[0] %}
+          <li data-tab="{{ node.field_publications.fieldDefinition.label }}">
+            <a>{{ node.field_publications.fieldDefinition.label }}</a>
+          </li>
+          {% endif %}
+
+          {% if content.field_media_appearances[0] %}
+          <li data-tab="{{ node.field_media_appearances.fieldDefinition.label }}">
+            <a>{{ node.field_media_appearances.fieldDefinition.label }}</a>
+          </li>
+          {% endif %}
+
+          {% if content.field_awards[0] %}
+          <li data-tab="{{ node.field_awards.fieldDefinition.label }}">
+            <a>{{ node.field_awards.fieldDefinition.label }}</a>
+          </li>
+          {% endif %}
+        </ul>
+      </div>
+      <div id="tab-content" class="profile__content_tabs_content">
+        {# Biography Tab #}
+        {% if content.field_biography[0] %}
+          <div class="profile__content_tabs_content_item" data-content="{{ node.field_biography.fieldDefinition.label }}">
+            <h3 class="profile__content_bio_title">About {{ node.label }}</h3>
+            {{ content.field_biography }}
+          </div>
+        {% endif %}
+        {# Education Tab #}
+        {% if content.field_education[0] %}
+          <div class="profile__content_tabs_content_item" data-content="{{ node.field_education.fieldDefinition.label }}">
+            <h3 class="profile__content_bio_title">Education</h3>
+            <div class="profile__content_bio_education">
+              <div class="profile__content_tabs_content_item_fields">
+                {% for key, item in content.field_education if key|first != '#' %}
+                  <div class="profile__content_bio_education_item">
+                    <i class="fas fa-graduation-cap"></i>
+                    <h4 class="profile__content_bio_education_school">{{ item['#school'] }}</h4>
+                    <h5 class="profile__content_bio_education_degree">{{ item['#degree'] }}</h5>
+                    <div class="profile__content_bio_education_desc">{{ item['#college'] }}</div>
+                    <div class="profile__content_bio_education_year">{{ item['#year'] }}</div>
+                  </div>
+                {% endfor %}
+              </div>
+            </div>
+          </div>
+        {% endif %}
+        {# Publications Tab #}
+        {% if content.field_publications[0] %}
+          <div class="profile__content_tabs_content_item" data-content="{{ node.field_publications.fieldDefinition.label }}">
+            <h3 class="profile__content_bio_title">Publications</h3>
+            <div class="profile__content_bio_publications">
+              {% for key, item in content.field_publications if key|first != '#' %}
+                <div class="profile__content_bio_publications_item">
+                  <div class="profile__content_bio_publications_title">
+                    {% if(item['#url']) %}
+                      <a href="{{ item['#url'] }}" target="_blank">
+                    {% endif %}
+                        <span>{{ item['#title'] }}</span>
+                    {% if(item['#url']) %}
+                      </a>
+                    {% endif %}
+                  </div>
+                  <div class="profile__content_bio_publications_date">{{ item['#date']|date('F j, Y') }}</div>
+                  <div class="profile__content_bio_publications_desc">{{ item['#description'] }}</div>
+                </div>
+              {% endfor %}
+            </div>
+          </div>
+        {% endif %}
+        {# Media Appearances Tab #}
+        {% if content.field_media_appearances[0] %}
+          <div class="profile__content_tabs_content_item" data-content="{{ node.field_media_appearances.fieldDefinition.label }}">
+            <h3 class="profile__content_bio_title">Media Appearances</h3>
+            <div class="profile__content_bio_media">
+              {% for key, item in content.field_media_appearances if key|first != '#' %}
+                <div class="profile__content_bio_media_item">
+                  <div class="profile__content_bio_media_title">
+                    {% if(item['#url']) %}
+                      <a href="{{ item['#url'] }}" target="_blank">
+                    {% endif %}
+                        <span>{{ item['#title'] }}</span>
+                    {% if(item['#url']) %}
+                      </a>
+                    {% endif %}
+                  </div>
+                  <div class="profile__content_bio_media_date">{{ item['#date']|date('F j, Y') }}</div>
+                  <div class="profile__content_bio_media_desc">{{ item['#media'] }}</div>
+                </div>
+              {% endfor %}
+            </div>
+          </div>
+        {% endif %}
+        {# Awards Tab #}
+        {% if content.field_awards[0] %}
+          <div class="profile__content_tabs_content_item" data-content="{{ node.field_awards.fieldDefinition.label }}">
+            <h3 class="profile__content_bio_title">Awards</h3>
+            <div class="profile__content_bio_media">
+              {% for key, item in content.field_awards if key|first != '#' %}
+                <div class="profile__content_bio_media_item">
+                  <div class="profile__content_bio_media_title">
+                    {% if(item['#url']) %}
+                      <a href="{{ item['#url'] }}" target="_blank">
+                    {% endif %}
+                        <span>{{ item['#title'] }}</span>
+                    {% if(item['#url']) %}
+                      </a>
+                    {% endif %}
+                  </div>
+                  <div class="profile__content_bio_media_date">{{ item['#date']|date('F j, Y') }}</div>
+                  <div class="profile__content_bio_media_desc">{{ item['#description'] }}</div>
+                </div>
+              {% endfor %}
+            </div>
+          </div>
+        {% endif %}
+      </div>
+    </div>
+    {# ----------------------------------------------------------------------------------------------------------------- #}
+    {# Accoridions for Mobile #}
+    <div class="container">
+      <section id="mobile_accordions">
+        {# Biography Tab #}
+        {% if content.field_biography[0] %}
+          <article class="accordion">
+            <div class="accordion-header">
+              <a href="#acc_biography" class="profile_trigger" data-action="collapse">{{ node.field_biography.fieldDefinition.label }}</a>
+            </div>
+            <div id="acc_biography" class="accordion-body is-collapsible is-hidden" data-parent="mobile_accordions" data-allow-multiple="false">
+              <div class="accordion-content">
+                <div class="profile__content_tabs_content_item">
+                  <h3 class="profile__content_bio_title">About {{ node.label }}</h3>
+                  {{ content.field_biography }}
+                </div>
+              </div>
+            </div>
+          </article>
+        {% endif %}
+        {# Education Tab #}
+        {% if content.field_education[0] %}
+          <article class="accordion">
+            <div class="accordion-header">
+              <a href="#acc_education" class="profile_trigger" data-action="collapse">{{ node.field_education.fieldDefinition.label }}</a>
+            </div>
+            <div id="acc_education" class="accordion-body is-collapsible is-hidden" data-parent="mobile_accordions" data-allow-multiple="false">
+              <div class="accordion-content">
+                <div class="profile__content_tabs_content_item">
+                  <h3 class="profile__content_bio_title">Education</h3>
+                  <div class="profile__content_bio_education">
+                    <div class="profile__content_tabs_content_item_fields">
+                      {% for key, item in content.field_education if key|first != '#' %}
+                        <div class="profile__content_bio_education_item">
+                          <i class="fas fa-graduation-cap"></i>
+                          <h4 class="profile__content_bio_education_school">{{ item['#school'] }}</h4>
+                          <h5 class="profile__content_bio_education_degree">{{ item['#degree'] }}</h5>
+                          <div class="profile__content_bio_education_desc">{{ item['#college'] }}</div>
+                          <div class="profile__content_bio_education_year">{{ item['#year'] }}</div>
+                        </div>
+                      {% endfor %}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article>
+        {% endif %}
+        {# Publications Tab #}
+        {% if content.field_publications[0] %}
+          <article class="accordion">
+            <div class="accordion-header">
+              <a href="#acc_publications" class="profile_trigger" data-action="collapse">{{ node.field_publications.fieldDefinition.label }}</a>
+            </div>
+            <div id="acc_publications" class="accordion-body is-collapsible is-hidden" data-parent="mobile_accordions" data-allow-multiple="false">
+              <div class="accordion-content">
+                <div class="profile__content_tabs_content_item">
+                  <h3 class="profile__content_bio_title">Publications</h3>
+                  <div class="profile__content_bio_publications">
+                    {% for key, item in content.field_publications if key|first != '#' %}
+                      <div class="profile__content_bio_publications_item">
+                        <div class="profile__content_bio_publications_title">
+                          {% if(item['#url']) %}
+                            <a href="{{ item['#url'] }}" target="_blank">
+                          {% endif %}
+                              <span>{{ item['#title'] }}</span>
+                          {% if(item['#url']) %}
+                            </a>
+                          {% endif %}
+                        </div>
+                        <div class="profile__content_bio_publications_date">{{ item['#date']|date('F j, Y') }}</div>
+                        <div class="profile__content_bio_publications_desc">{{ item['#description'] }}</div>
+                      </div>
+                    {% endfor %}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article>
+        {% endif %}
+        {# Media Appearances Tab #}
+        {% if content.field_media_appearances[0] %}
+          <article class="accordion">
+            <div class="accordion-header">
+              <a href="#acc_media" class="profile_trigger" data-action="collapse">{{ node.field_media_appearances.fieldDefinition.label }}</a>
+            </div>
+            <div id="acc_media" class="accordion-body is-collapsible is-hidden" data-parent="mobile_accordions" data-allow-multiple="false">
+              <div class="accordion-content">
+                <h3 class="profile__content_bio_title">Media Appearances</h3>
+                <div class="profile__content_bio_media">
+                  {% for key, item in content.field_media_appearances if key|first != '#' %}
+                    <div class="profile__content_bio_media_item">
+                      <div class="profile__content_bio_media_title">
+                        {% if(item['#url']) %}
+                          <a href="{{ item['#url'] }}" target="_blank">
+                        {% endif %}
+                            <span>{{ item['#title'] }}</span>
+                        {% if(item['#url']) %}
+                          </a>
+                        {% endif %}
+                      </div>
+                      <div class="profile__content_bio_media_date">{{ item['#date']|date('F j, Y') }}</div>
+                      <div class="profile__content_bio_media_desc">{{ item['#media'] }}</div>
+                    </div>
+                  {% endfor %}
+                </div>
+              </div>
+            </div>
+          </article>
+        {% endif %}
+        {# Awards Tab #}
+        {% if content.field_awards[0] %}
+          <article class="accordion">
+            <div class="accordion-header">
+              <a href="#acc_awards" class="profile_trigger" data-action="collapse">{{ node.field_awards.fieldDefinition.label }}</a>
+            </div>
+            <div id="acc_awards" class="accordion-body is-collapsible is-hidden" data-parent="mobile_accordions" data-allow-multiple="false">
+              <div class="accordion-content">
+                <h3 class="profile__content_bio_title">Awards</h3>
+                <div class="profile__content_bio_media">
+                  {% for key, item in content.field_awards if key|first != '#' %}
+                    <div class="profile__content_bio_media_item">
+                      <div class="profile__content_bio_media_title">
+                        {% if(item['#url']) %}
+                          <a href="{{ item['#url'] }}" target="_blank">
+                        {% endif %}
+                            <span>{{ item['#title'] }}</span>
+                        {% if(item['#url']) %}
+                          </a>
+                        {% endif %}
+                      </div>
+                      <div class="profile__content_bio_media_date">{{ item['#date']|date('F j, Y') }}</div>
+                      <div class="profile__content_bio_media_desc">{{ item['#description'] }}</div>
+                    </div>
+                  {% endfor %}
+                </div>
+              </div>
+            </div>
+          </article>
+        {% endif %}
+      </section>
+    </div>
+  </div>
+</article>
